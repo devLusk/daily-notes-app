@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.github.devlusk.dailynotesapp.databinding.ActivityCreateNoteBinding
+import java.io.File
+import kotlin.random.Random
 
 class CreateNoteActivity : AppCompatActivity() {
     lateinit var binding: ActivityCreateNoteBinding
@@ -24,7 +26,23 @@ class CreateNoteActivity : AppCompatActivity() {
             insets
         }
 
-        // TODO: Create saveNote function
+        fun saveNote(title: String, content: String): Boolean {
+            val notesDir = getExternalFilesDir("notes")
+
+            if (notesDir == null) {
+                return false
+            }
+
+            val randomSuffix = (1000..9999).random()
+            val fileName = "${title.replace(" ", "_")}_${randomSuffix}.txt".lowercase()
+
+            val noteFile = File(notesDir, fileName)
+
+            val noteData = "--- Title ---\n $title\n\n --- Content ---\n $content\n\n"
+            noteFile.writeText(noteData)
+
+            return true
+        }
 
         binding.btbSave.setOnClickListener {
             val noteTitle = binding.etTitle.text.toString()
@@ -35,12 +53,19 @@ class CreateNoteActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            if (noteTitle.isEmpty()) {
+            if (noteContent.isEmpty()) {
                 Toast.makeText(this, "Please, enter a content", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            // TODO: Use saveNote function
+            val saved = saveNote(noteTitle, noteContent)
+
+            if (saved) {
+                Toast.makeText(this, "Note saved successfully!", Toast.LENGTH_SHORT).show()
+                finish()
+            } else {
+                Toast.makeText(this, "Error saving note", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }
