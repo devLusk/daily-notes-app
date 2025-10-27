@@ -15,8 +15,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        val binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -26,7 +26,11 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnAddNote.setOnClickListener {
             val intent = Intent(this, CreateNoteActivity::class.java)
+            startActivity(intent)
+        }
 
+        binding.btnAllNote.setOnClickListener {
+            val intent = Intent(this, NotesListActivity::class.java)
             startActivity(intent)
         }
     }
