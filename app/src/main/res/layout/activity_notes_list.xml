@@ -6,57 +6,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="32dp"
-    tools:context=".MainActivity">
+    tools:context=".NotesListActivity">
 
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="DAILY NOTES"
+        android:text="My Notes"
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tvCount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="You have 0 notes"
-        android:textColor="@android:color/darker_gray"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
-
-    <ImageView
-        android:id="@+id/imgCat"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:alpha="0.3"
-        android:scaleType="centerCrop"
-        android:src="@drawable/cat"
+    <!-- RecyclerView para a lista de notas -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvNotes"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toTopOf="@+id/btnAddNote"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvCount" />
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
 
+    <!-- Botão flutuante para adicionar nova nota -->
     <Button
         android:id="@+id/btnAddNote"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Add Note"
-        app:layout_constraintBottom_toTopOf="@+id/btnAllNote"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/btnAllNote"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="All Notes"
+        android:text="Add note"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
