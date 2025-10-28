@@ -1,5 +1,6 @@
 package com.github.devlusk.dailynotesapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -8,7 +9,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.github.devlusk.dailynotesapp.databinding.ActivityCreateNoteBinding
 import java.io.File
-import kotlin.random.Random
 
 class CreateNoteActivity : AppCompatActivity() {
     lateinit var binding: ActivityCreateNoteBinding
@@ -62,6 +62,13 @@ class CreateNoteActivity : AppCompatActivity() {
 
             if (saved) {
                 Toast.makeText(this, "Note saved successfully!", Toast.LENGTH_SHORT).show()
+
+                val notesDir = getExternalFilesDir("notes")
+                val notesCount = notesDir?.listFiles()?.size ?: 0
+
+                val intent = Intent().putExtra("notes_quantity", notesCount)
+                setResult(RESULT_OK, intent)
+
                 finish()
             } else {
                 Toast.makeText(this, "Error saving note", Toast.LENGTH_SHORT).show()
