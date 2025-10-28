@@ -26,9 +26,9 @@ class CreateNoteActivity : AppCompatActivity() {
             insets
         }
 
-        fun saveNote(title: String, content: String): Boolean {
-            val notesDir = getExternalFilesDir("notes")
+        val notesDir = getExternalFilesDir("notes")
 
+        fun saveNote(title: String, content: String): Boolean {
             if (notesDir == null) {
                 return false
             }
@@ -37,8 +37,7 @@ class CreateNoteActivity : AppCompatActivity() {
             val fileName = "${title.replace(" ", "_")}_${randomSuffix}.txt".lowercase()
 
             val noteFile = File(notesDir, fileName)
-
-            val noteData = "--- Title ---\n $title\n\n --- Content ---\n $content\n\n"
+            val noteData = "--- Title ---\n$title\n\n--- Content ---\n$content\n\n"
             noteFile.writeText(noteData)
 
             return true
@@ -63,12 +62,10 @@ class CreateNoteActivity : AppCompatActivity() {
             if (saved) {
                 Toast.makeText(this, "Note saved successfully!", Toast.LENGTH_SHORT).show()
 
-                val notesDir = getExternalFilesDir("notes")
                 val notesCount = notesDir?.listFiles()?.size ?: 0
-
                 val intent = Intent().putExtra("notes_quantity", notesCount)
-                setResult(RESULT_OK, intent)
 
+                setResult(RESULT_OK, intent)
                 finish()
             } else {
                 Toast.makeText(this, "Error saving note", Toast.LENGTH_SHORT).show()
