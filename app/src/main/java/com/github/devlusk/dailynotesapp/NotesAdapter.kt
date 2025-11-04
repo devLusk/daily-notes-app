@@ -7,7 +7,7 @@ import com.github.devlusk.dailynotesapp.databinding.ItemNoteBinding
 
 class NotesAdapter(
     val notes: List<Note>,
-    val onClick: (Note) -> Unit
+//    val onClick: (Note) -> Unit
 ) : RecyclerView.Adapter<NotesAdapter.NoteHolder>() {
 
     class NoteHolder(val binding: ItemNoteBinding) : RecyclerView.ViewHolder(binding.root)
@@ -28,9 +28,9 @@ class NotesAdapter(
         holder.binding.tvTitle.text = note.title
         holder.binding.tvContent.text = note.content
 
-        holder.binding.root.setOnClickListener {
-            onClick(note)
-        }
+//        holder.binding.root.setOnClickListener {
+//            onClick(note)
+//        }
     }
 
     override fun getItemCount(): Int = notes.size
