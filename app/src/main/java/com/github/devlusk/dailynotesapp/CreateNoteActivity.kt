@@ -61,10 +61,6 @@ class CreateNoteActivity : AppCompatActivity() {
 
             if (saved) {
                 Toast.makeText(this, "Note saved successfully!", Toast.LENGTH_SHORT).show()
-
-                val notesCount = notesDir?.listFiles()?.size ?: 0
-                val intent = Intent().putExtra("notes_quantity", notesCount)
-
                 setResult(RESULT_OK, intent)
                 finish()
             } else {

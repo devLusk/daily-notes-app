@@ -25,25 +25,25 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        val createNoteLauncher = registerForActivityResult(
-            ActivityResultContracts.StartActivityForResult()
-        ) { result ->
-            if (result.resultCode == RESULT_OK) {
-                val data = result.data
-                val notesQuantity = data?.getIntExtra("notes_quantity", 0)
-
-                binding.tvCount.text = "You have $notesQuantity notes"
-            }
-        }
-
         binding.btnAddNote.setOnClickListener {
             val intent = Intent(this, CreateNoteActivity::class.java)
-            createNoteLauncher.launch(intent)
+            startActivity(intent)
         }
 
         binding.btnAllNote.setOnClickListener {
             val intent = Intent(this, NotesListActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        updateNotesCount()
+    }
+
+    private fun updateNotesCount() {
+        val notesDir = getExternalFilesDir("notes")
+        val notesQuantity = notesDir?.listFiles()?.size ?: 0
+        binding.tvCount.text = "You have $notesQuantity notes"
     }
 }

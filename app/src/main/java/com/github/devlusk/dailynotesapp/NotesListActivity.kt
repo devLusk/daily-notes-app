@@ -54,5 +54,9 @@ class NotesListActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+
+        binding.btnReturn.setOnClickListener {
+            finish()
+        }
     }
 }
