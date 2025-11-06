@@ -4,10 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.github.devlusk.dailynotesapp.databinding.ItemNoteBinding
+import java.io.File
 
 class NotesAdapter(
-    val notes: List<Note>,
-//    val onClick: (Note) -> Unit
+    val notes: MutableList<Note>
 ) : RecyclerView.Adapter<NotesAdapter.NoteHolder>() {
 
     class NoteHolder(val binding: ItemNoteBinding) : RecyclerView.ViewHolder(binding.root)
@@ -28,9 +28,15 @@ class NotesAdapter(
         holder.binding.tvTitle.text = note.title
         holder.binding.tvContent.text = note.content
 
-//        holder.binding.root.setOnClickListener {
-//            onClick(note)
-//        }
+        holder.binding.btnDelete.setOnClickListener {
+            val file = File(note.filePath)
+            if (file.exists()) {
+                file.delete()
+            }
+
+            notes.removeAt(position)
+            notifyItemRemoved(position)
+        }
     }
 
     override fun getItemCount(): Int = notes.size

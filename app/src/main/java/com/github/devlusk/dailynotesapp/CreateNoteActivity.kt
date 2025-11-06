@@ -66,5 +66,9 @@ class CreateNoteActivity : AppCompatActivity() {
                 Toast.makeText(this, "Error saving note", Toast.LENGTH_SHORT).show()
             }
         }
+
+        binding.btnCancel.setOnClickListener {
+            finish()
+        }
     }
 }
