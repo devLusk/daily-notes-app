@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DailyNotesApp">
         <activity
+            android:name=".ViewNoteActivity"
+            android:exported="false" />
+        <activity
             android:name=".NotesListActivity"
             android:exported="false" />
         <activity

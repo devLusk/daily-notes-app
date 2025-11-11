@@ -1,5 +1,6 @@
 package com.github.devlusk.dailynotesapp
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -29,13 +30,22 @@ class NotesAdapter(
         holder.binding.tvContent.text = note.content
 
         holder.binding.btnDelete.setOnClickListener {
-            val file = File(note.filePath)
+            val file = File(note.fileName)
             if (file.exists()) {
                 file.delete()
             }
 
             notes.removeAt(position)
             notifyItemRemoved(position)
+        }
+
+        holder.itemView.setOnClickListener {
+            holder.itemView.setOnClickListener {
+                val file = File(note.fileName)
+                val intent = Intent(holder.itemView.context, ViewNoteActivity::class.java)
+                intent.putExtra("note_file_name", file.name)
+                holder.itemView.context.startActivity(intent)
+            }
         }
     }
 

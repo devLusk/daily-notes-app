@@ -59,8 +59,6 @@ class CreateNoteActivity : AppCompatActivity() {
             val saved = saveNote(noteTitle, noteContent)
 
             if (saved) {
-                Toast.makeText(this, "Note saved successfully!", Toast.LENGTH_SHORT).show()
-                setResult(RESULT_OK, intent)
                 finish()
             } else {
                 Toast.makeText(this, "Error saving note", Toast.LENGTH_SHORT).show()
