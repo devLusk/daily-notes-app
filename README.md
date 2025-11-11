@@ -38,10 +38,4 @@ Each note is stored as a `.txt` file with its title and content.
 |------|---------|--------|
 | <img src="images/home_screen.png" width="200"/> | <img src="images/create_note.png" width="200"/> | <img src="images/notes_list.png" width="200"/> |
 
----
-
-## 👨‍💻 Author
-
-**Lucas Silva**  
-Built with ❤️ in Kotlin.
 
